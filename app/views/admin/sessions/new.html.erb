@@ -1,0 +1,27 @@
+<h2>管理者ログイン</h2>
+
+<table class="table table-borderless">
+<%= form_with model:@admin, url:admin_session_path, method: :post do |f| %>
+
+<tbody>
+     <tr>
+      <td>メールアドレス</td>
+      <td>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        パスワード
+          <% if @minimum_password_length %>
+            <span>(<%= @minimum_password_length %> 文字以上)</span>
+          <% end %>
+      </td>
+      <td>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </td>
+    </tr>
+        <td><%= f.submit "ログイン",class: "btn btn-primary" %></td>
+    </tbody>    
+  <% end %>
+  </table>
