@@ -1,0 +1,24 @@
+.item_new_table {
+  width :110%;
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+}
+
+.item_new_table tr {
+  margin-bottom :3px;
+}
+
+.pagination {
+  justify-content:center;
+}
+
+.item_new {
+  width: 30px;
+	height: 30px;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.428571429;
+	border-radius: 15px;
+	box-shadow: 2px 2px #d3d3d3
+}
