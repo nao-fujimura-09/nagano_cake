@@ -1,3 +1,35 @@
+// トップページ
+.main_container {
+    background-image: url("/images/ショートケーキ.jpg");
+    background-position: right 10% bottom 10%;
+    background-size: cover;
+    height :450px;
+    padding :10%;
+    margin :10%;
+}
+
+// アバウトページ
+.about {
+  font-size :60px;
+}
+
+.about h3 {
+  // line-height: 0.5;
+  padding :1 0;
+}
+
+.about_cake {
+    height :100px;
+    weight :100px;
+    padding :10%;
+    margin :10%;
+}
+
+.main_content {
+    background-color :white;
+    padding :7%;
+}
+
 .item_new_table {
   width :110%;
   border-collapse: separate;
@@ -10,6 +42,10 @@
 
 .pagination {
   justify-content:center;
+}
+
+.page {
+    padding-right :4px;
 }
 
 .item_new {

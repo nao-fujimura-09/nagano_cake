@@ -1,2 +1,29 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="main_container">
+    <div class="row main_content">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <p>ようこそ、ながのCAKEへ！</p><br/>
+        <p>このサイトは、ケーキ販売のECサイトになります。</p><br/>
+        <p>会員でもない方も商品の閲覧はできますが、</p><br/>
+        <p>購入には会員登録が必要になります。</p>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <h1 class="font-weight-bold">新着商品</h1>
+  <div class="row my-5">
+  <% @items.each do |item| %>
+    <div class="col-3">
+      <%= image_tag item.get_item_image(100,50) %><br/>
+      <div class="font-weight-bold mt-2">
+      <%= item.name %><br/>
+      </div>
+      <div class="font-weight-bold mt-2">
+      ¥<%= item.price.to_s(:delimited) %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+</div>

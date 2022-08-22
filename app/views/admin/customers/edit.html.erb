@@ -1,0 +1,94 @@
+<div class="container">
+  <h4 class="d-inline-block px-3 my-5" style="background-color:#eeeeee">
+    <%= @customer.full_name %>さんの会員情報編集
+  </h4>
+  
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-8">
+      <table class="table table-borderless">
+        <%= form_with model: [:admin, @customer] do |f| %>
+          <thead>
+            <th width="25%"></th>
+            <th width="25%"></th>
+            <th width="25%"></th>
+            <th width="25%"></th>
+          </thead>
+          <tbody>
+              <tr>
+              <td>会員ID</td>
+              <td>
+                <%= @customer.id %>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>名前</td>
+              <td>
+                <%= f.text_field :last_name, class: 'form-control', placeholder:"令和" %>
+              </td>
+              <td>
+                <%= f.text_field :first_name, class: 'form-control', placeholder:"道子" %>
+              </td>
+            </tr>
+      
+            <tr>
+              <td>フリガナ</td>
+              <td>
+                  <%= f.text_field :last_name_kana, class: 'form-control', placeholder:"レイワ" %>
+              </td>
+              <td>
+                  <%= f.text_field :first_name_kana, class: 'form-control', placeholder:"ミチコ" %>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><%= f.label :"郵便番号"%></td>
+              <td>
+                <%= f.text_field :post_code, class: 'form-control', placeholder:"0000000" %>
+              </td>
+            </tr>
+            
+              <tr>
+              <td><%= f.label :"住所"%></td>
+              <td colspan="3">
+                <%= f.text_field :address, class: 'form-control', placeholder:"東京都渋谷区佐々木神園町0-0" %>
+              </td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              <td><%= f.label :"電話番号"%></td>
+              <td>
+                <%= f.text_field :telephone_number, class: 'form-control', placeholder:"00000000000" %>
+              </td>
+            </tr>
+    
+            <tr>
+              <td><%= f.label :メールアドレス %></td>
+              <td>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder:"sample@sample.com" %>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>会員ステータス</td>
+              <td>
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_active, "有効" %>　　
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active, "退会" %>
+              </td>
+            </tr>
+    
+            <tr>
+              <td></td>
+              <td>
+                <%= f.submit "変更を保存", class: 'btn btn-success py-3 px-5' %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+</div>

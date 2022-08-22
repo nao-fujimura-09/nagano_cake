@@ -1,18 +1,18 @@
 <div class="container">
-  <div class="row m-5 px-3">
+  <div class="row m-5 justify-content-center">
     <div class="col-2">
-      <h2 style="background-color:#eeeeee">商品一覧</h2>
+      <h4 style="background-color:#eeeeee">商品一覧</h4>
     </div>
-    <div class="col-9" align="right">
+    <div class="col-7" align="right">
       <%= link_to "＋", new_admin_item_path, class:"item_new btn btn-light" %>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
       <table class="table">
-        <thead>
+        <thead class="thead-light">
           <th width="10%">商品ID</th>
           <th width="30%">商品名</th>
           <th width="10%">税抜価格</th>
@@ -31,9 +31,9 @@
               <td><%= item.genre_id %></td>
               <td>
                 <% if item.is_active? %> 
-                  <p style="color:#32cd32">販売中</p>
+                  <p class="font-weight-bold", style="color:#32cd32">販売中</p>
                 <% else %>
-                  <p style="color:#d3dd3d3">販売停止中</p>
+                  <p class="font-weight-bold", style="color:#d3d3d3">販売停止中</p>
                 <% end %>
               </td>
             </tr>

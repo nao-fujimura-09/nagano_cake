@@ -1,13 +1,15 @@
-<h2>管理者ログイン</h2>
-
-<table class="table table-borderless">
-<%= form_with model:@admin, url:admin_session_path, method: :post do |f| %>
-
-<tbody>
+<div class="container">
+<h4 class="m-5 d-inline-block px-3" style="background-color:#eeeeee">管理者ログイン</h4>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+    <table class="table table-borderless">
+      <%= form_with model:@admin, url:admin_session_path, method: :post do |f| %>
+        <tbody>
      <tr>
       <td>メールアドレス</td>
       <td>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+        <%= f.email_field :email, autofocus: true, size:"40x2", autocomplete: "email", placeholder:"sample@example.com" %>
       </td>
     </tr>
     <tr>
@@ -18,10 +20,15 @@
           <% end %>
       </td>
       <td>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, size:"40x2", autocomplete: "current-password" %>
       </td>
     </tr>
-        <td><%= f.submit "ログイン",class: "btn btn-primary" %></td>
+        <td></td>
+        <td><%= f.submit "ログイン",class: "btn btn-primary py-2 px-5 my-4" %></td>
     </tbody>    
   <% end %>
   </table>
+  </div>
+  <div class="col-3"></div>
+  </div>
+  </div>
