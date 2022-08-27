@@ -1,0 +1,42 @@
+<div class="container">
+  
+  <div class="row justify-content-center py-5">
+    <div class="pr-5" align="left">
+      <%= image_tag @item.get_item_image(120,80) %>
+    </div>
+  
+    <table width="30%">
+      <tbody>
+        <tr>
+            <td><h3 class="font-weight-bold"><%= @item.name %></h3></td>
+            <td></td>
+        </tr>
+        <tr>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <td class="form-inline pt-5 mt-5">
+            <h4>¥ <%= @item.add_tax_price.to_s(:delimited) %> </h4>
+            <span>(税込)</span>
+          </td>
+          <td></td>
+        </tr>
+        <td>
+          
+          <div class="form-inline">
+            <select class="form-control ml-3 mr-5">
+              <option value="" hidden>個数選択　　</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <%= link_to "カートに入れる", edit_admin_item_path, class:"btn btn-success my-5 px-2" %>
+            </div>
+        </td>
+      </tbody>
+    </table>
+  </div>
+
+</div>

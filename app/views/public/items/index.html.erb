@@ -1,0 +1,24 @@
+<div class="container pb-5">
+  
+  <div class="form-inline mb-3 mt-5 mb-3">
+    <h2 class="font-weight-bold pr-2">商品一覧</h2>
+    <h5>(全 <%= @items.count %>件)</h5>
+  </div>
+  
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-3">
+        <%= link_to item_path(item.id) do %>
+        <%= image_tag item.get_item_image(90,40) %><br/>
+        <% end %>
+        <div class="font-weight-bold mt-2">
+          <%= item.name %><br/>
+        </div>
+        <div class="font-weight-bold mt-2 mb-5">
+          ¥<%= item.price.to_s(:delimited) %>
+        </div>
+      </div>
+  <% end %>
+  </div>
+<%= paginate @items %>
+</div>

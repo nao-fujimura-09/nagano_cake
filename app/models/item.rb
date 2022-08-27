@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  belongs_to :customer
   has_one_attached :item_image
 
   def add_tax_price

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       patch "/customers/information" => "customers#update"
       get "/customers/cmfirm" => "customers#comfirm"
       patch "/customers/withdrawal" => "customers#withdrawal"
+      
+      resources :items, only: [:index, :show]
     end
     
     # admin
