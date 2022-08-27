@@ -1,2 +1,85 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+    <h4 class="my-5 d-inline-block px-3 ml-5" style="background-color:#eeeeee">会員情報編集</h4>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-borderless">
+        <%= form_with model: @customer, url: customers_information_path do |f| %>
+          <thead>
+            <th width="25%"></th>
+            <th width="25%"></th>
+            <th width="25%"></th>
+            <th width="25%"></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>氏名</td>
+              <td>
+                <%= f.text_field :last_name, class: 'form-control', placeholder:"令和" %>
+              </td>
+              <td>
+                <%= f.text_field :first_name, class: 'form-control', placeholder:"道子" %>
+              </td>
+              <td></td>
+            </tr>
+    
+            <tr>
+              <td>フリガナ</td>
+              <td>
+                  <%= f.text_field :last_name_kana, class: 'form-control', placeholder:"レイワ" %>
+              </td>
+              <td>
+                  <%= f.text_field :first_name_kana, class: 'form-control', placeholder:"ミチコ" %>
+              </td>
+              <td></td>
+            </tr>
+    
+            <tr>
+              <td><%= f.label :"郵便番号"%></td>
+              <td>
+                <%= f.text_field :post_code, class: 'form-control', placeholder:"0000000" %>
+              </td>
+              <td></td>
+            </tr>
+            
+              <tr>
+              <td><%= f.label :"住所"%></td>
+              <td colspan="3">
+                <%= f.text_field :address, class: 'form-control', placeholder:"東京都渋谷区佐々木神園町0-0" %>
+              </td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              <td><%= f.label :"電話番号"%></td>
+              <td>
+                <%= f.text_field :telephone_number, class: 'form-control', placeholder:"00000000000" %>
+              </td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :メールアドレス %></td>
+              <td>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder:"sample@sample.com" %>
+              </td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              <td></td>
+              <td><%= f.submit "編集内容を保存",class: "btn btn-success py-1 px-5" %></td>
+              <td></td>
+              <td><%= link_to "退会する", customers_cmfirm_path, class:"btn btn-danger py-1 px-3" %></td>
+            </tr>
+          </tbody>  
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</div>

@@ -1,2 +1,50 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+  <h4 class="m-5 d-inline-block px-3" style="background-color:#eeeeee">マイページ</h4>
+
+  <div class="form-inline mb-3">
+     <h5 class="font-weight-bold mr-5">登録情報</h5>
+     <%= link_to "編集する", customers_information_edit_path, class:"btn btn-success px-4" %>
+  </div>
+    
+  <div class="row mb-3">
+    <div class="col-7">
+    <table class="mypage_table table table-bordered">
+      <tr>
+        <th width="30%">氏名</th>
+        <td><%= @customer.full_name %></td>
+      </tr>
+      <tr>
+        <th>カナ</th>
+        <td><%= @customer.full_name_kana %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @customer.post_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    </table>
+    </div>
+    <div class="col-6"></div>
+  </div>
+  <div class="form-inline mb-3">
+    <h5 class="font-weight-bold mr-5">配送先　</h5>
+    <%= link_to "一覧を見る", customers_information_edit_path, class:"btn btn-primary px-4" %>
+  </div>
+  
+  <div class="form-inline mb-3">
+     <h5 class="font-weight-bold mr-5">注文履歴</h5>
+     <%= link_to "一覧を見る", customers_information_edit_path, class:"btn btn-primary px-4" %>
+  </div>
+  
+</div>

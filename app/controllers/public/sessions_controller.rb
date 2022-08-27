@@ -3,13 +3,14 @@
 class Public::SessionsController < Devise::SessionsController
   
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :customer_state, only: [:create]
 
   def after_sign_in_path_for(resource)
     root_path
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    new_customer_session_path
   end
 
   protected
@@ -19,16 +20,12 @@ class Public::SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_out)
   end
 
-  before_action :customer_state, only: [:create]
-
   def customer_state
-    @customer = Customer.find_by(email: params[:customer][:email])
+    @customer = Customer.find_by(email: params[:customer][:email]) 
     return if !@customer
-    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
-      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-      redirect_to new_customer_registration
-    else
-      redirect_to root_path
+    if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
+      # flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      redirect_to new_customer_registration_path
     end
   end
   

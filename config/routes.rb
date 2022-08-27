@@ -9,9 +9,13 @@ Rails.application.routes.draw do
       sessions: "public/sessions"
     }
     
-    namespace :public do
-      resources :customers, only: [:show, :edit, :comfirm] 
-      get 'customers/comfirm'
+    scope module: :public do
+    # namespace :public do
+      resource :customers, only: [:show]
+      get "/customers/information/edit" => "customers#edit"
+      patch "/customers/information" => "customers#update"
+      get "/customers/cmfirm" => "customers#comfirm"
+      patch "/customers/withdrawal" => "customers#withdrawal"
     end
     
     # admin
