@@ -7,9 +7,9 @@
   
   <div class="row">
     <% @items.each do |item| %>
-      <div class="col-3">
+      <div class="col-2">
         <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_item_image(90,40) %><br/>
+        <%= image_tag item.get_item_image(230,110) %><br/>
         <% end %>
         <div class="font-weight-bold mt-2">
           <%= item.name %><br/>
@@ -20,5 +20,6 @@
       </div>
   <% end %>
   </div>
+
 <%= paginate @items %>
 </div>

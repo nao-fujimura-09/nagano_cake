@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       patch "/customers/withdrawal" => "customers#withdrawal"
       
       resources :items, only: [:index, :show]
+      resources :cart_items, only: [:index, :create, :update, :destroy]
+      delete "/cart_items/" => "cart_items#destroy_all"
     end
     
     # admin
