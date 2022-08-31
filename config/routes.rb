@@ -14,12 +14,21 @@ Rails.application.routes.draw do
       resource :customers, only: [:show]
       get "/customers/information/edit" => "customers#edit"
       patch "/customers/information" => "customers#update"
-      get "/customers/cmfirm" => "customers#comfirm"
+      get "/customers/comfirm" => "customers#comfirm"
       patch "/customers/withdrawal" => "customers#withdrawal"
       
       resources :items, only: [:index, :show]
       resources :cart_items, only: [:index, :create, :update, :destroy]
       delete "/cart_items/" => "cart_items#destroy_all"
+      
+      
+      get "/orders/comfirm" => "orders#comfirm"
+      post "/orders/comfirm" => "orders#comfirm"
+      post "/orders/thanks" => "orders#thanks"
+      get "/orders/show" => "orders#show"
+      resources :orders, only: [:index, :new, :create]
+      
+      resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     end
     
     # admin
