@@ -27,7 +27,7 @@
     </div>
   
     <div class="col-2">
-      <%= form_with model: @order, url:orders_thanks_path, method: :post do |f| %>
+      <%= form_with model: @order, method: :post do |f| %>
         <table class="order_table table table-bordered">
           <tbody>
               <tr>
@@ -49,8 +49,8 @@
               <tr>
                 <td style="background-color:#eeeeee"  height="35">請求金額</td>
                 <td>
-                  <%= f.hidden_field :total_payment, :value => @total_payment %>
-                  <%= (@total_price += 800).to_s(:delimited) %>
+                  <%= f.hidden_field :total_payment, :value => @total_price + @shopping_cost %>
+                  <%= (@total_price + @shopping_cost).to_s(:delimited) %>
                 </td>
               </tr>
           <tbody>
@@ -63,7 +63,7 @@
       <h5 class="font-weight-bold">支払方法</h5>
     </div>
     <div class="col-3">
-      <%= f.hidden_field :payment_method, :value => @payment_method %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
       <%= @order.payment_method_i18n %>
     </div>
   </div>

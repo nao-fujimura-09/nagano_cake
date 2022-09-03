@@ -1,2 +1,72 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+    <h4 class="my-5 d-inline-block px-3 ml-5" style="background-color:#eeeeee">配送先登録／一覧</h4>
+</div>
+
+<div class="container">
+  <div class="row pl-5">
+    <div class="col-8">
+      <table class="table table-borderless">
+        <%= form_with model: @address do |f| %>
+        <thead>
+          <th width="25%"></th>
+          <th width="25%"></th>
+          <th width="35%"></th>
+          <th width="15%"></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.label :"郵便番号(ハイフンなし)"%></td>
+            <td>
+              <%= f.text_field :postal_code, class: 'form-control', placeholder:"0000000" %>
+            </td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td><%= f.label :"住所"%></td>
+            <td colspan="2">
+            <%= f.text_field :address, class: 'form-control', placeholder:"東京都渋谷区佐々木神園町0-0" %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :"宛名"%></td>
+            <td>
+              <%= f.text_field :name, class: 'form-control', placeholder:"令和道子" %>
+            </td>
+            <td></td>
+            <td>
+              <%= f.submit "新規登録", class: "btn btn-success py-1 px-5" %>
+            </td>
+          </tr>
+        </tbody>
+        <%end%>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row pt-4 pb-5">
+    <div class="col-6">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <th width="7%">郵便番号</th>
+          <th width="20%">住所</th>
+          <th width="10%">宛名</th>
+          <th width="25%"></th>
+        </thead>
+
+        <% @addresses.each do |address| %>
+          <tbody>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td align="center">
+              <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-success py-1 px-3 mx-2" %>
+              <%= link_to "削除する", address_path(address.id), method: :delete, class:"btn btn-danger py-1 px-3" %>
+            </td>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+  
+</div>

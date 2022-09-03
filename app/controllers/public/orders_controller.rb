@@ -8,10 +8,11 @@ class Public::OrdersController < ApplicationController
     @shopping_cost = 800
     @total_price = 0
     @order = Order.new(order_params)
+    # @address = Address.find(params[:order][:address_id])
     if params[:order][:address_number] == "0"
       @order.address = current_customer.address  
     elsif params[:order][:address_number] =="1"
-      @order.address = order.address
+      @order.address = @address
     else
     end
 
@@ -21,7 +22,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    redirect_to orders_comfirm_path
+    redirect_to orders_thanks_path
   end
 
   def thanks
