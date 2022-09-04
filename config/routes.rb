@@ -21,11 +21,8 @@ Rails.application.routes.draw do
       resources :cart_items, only: [:index, :create, :update, :destroy]
       delete "/cart_items/" => "cart_items#destroy_all"
       
-      
-      # get "/orders/comfirm" => "orders#comfirm"
       post "/orders/comfirm" => "orders#comfirm"
-      post "/orders/thanks" => "orders#thanks"
-      # get "/orders/show" => "orders#show"
+      get "/orders/thanks" => "orders#thanks", as:"thanks" #名前をつけることで詳細にリンクするバグを回避
       resources :orders, only: [:index, :new, :create, :show]
       
       resources :addresses, only: [:index, :create, :edit, :update, :destroy]
@@ -40,6 +37,8 @@ Rails.application.routes.draw do
       resources :genres, only: [:index, :create, :edit, :update]
       resources :items
       resources :customers, only: [:index, :show, :edit, :update]
+      resources :orders, only: [:index, :show, :update]
+      resources :order_detail, only: [:update]
     end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

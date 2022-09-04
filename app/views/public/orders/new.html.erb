@@ -9,7 +9,7 @@
         <%= f.radio_button :payment_method,Order.payment_methods.key(0),checked: true  %>
         <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
         <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-　　　　<%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
       
     <h4 class="font-weight-bold">お届け先</h4>
@@ -25,7 +25,6 @@
           <div class="row pl-4 pb-3">
             <div class="col-6">
               <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address), {include_blank: "選択してください"}, class:"form-control", width:"40%" %>
-            <!--<%= f.collection_select(:address_id, current_customer.addresses, :id, :full_address, {include_blank: "選択してください"}, class:"form-control", width:"40%") %>-->
           </div>
           </div>
       <%= f.radio_button :address_number, 2 %>
