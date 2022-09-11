@@ -3,6 +3,8 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items
     @items = Item.all
     @total_price = 0
+    
+    
   end
   
   def create

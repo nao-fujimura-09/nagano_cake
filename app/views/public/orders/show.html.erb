@@ -9,7 +9,7 @@
           <tr>
             <td style="background-color:#eeeeee" height="35">注文日</td>
             <td>
-              <%= @order.created_at %>
+              <%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
             </td>
           </tr>
           <tr>

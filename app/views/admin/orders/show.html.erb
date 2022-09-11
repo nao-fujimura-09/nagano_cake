@@ -1,5 +1,103 @@
 <div class="container">
     <h4 class="d-inline-block px-3 my-5 ml-5" style="background-color:#eeeeee">注文履歴詳細</h4>
     
+  <table class="table table-borderless">
+    <tr>
+      <td width="10%"><h5 class="font-weight-bold">購入者</h5></td>
+      <td><h5>
+        <%= link_to admin_customer_orders_path(@order.customer_id) do %>
+          <%= @order.customer.full_name %>
+        <% end %>
+        </h5></td>
+    </tr>
+    <tr>
+      <td width="10%"><h5 class="font-weight-bold">注文日</h5></td>
+      <td><h5><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></h5></td>
+    </tr>
+    <tr>
+      <td width="10%"><h5 class="font-weight-bold">配送先</h5></td>
+      <td>
+        <h5>
+         〒 <%= @order.postal_code.to_s.insert(3, "-") %>　<%= @order.address %></h5><br>
+         <h5><%= @order.name %></h5>
+      </td>
+    </tr>
+    <tr>
+      <td width="10%"><h5 class="font-weight-bold">支払方法</h5></td>
+      <td><h5><%= @order.payment_method_i18n %></h5></td>
+    </tr>
+    <tr>
+      <td width="15%"><h5 class="font-weight-bold">注文ステータス</h5></td>
+      <td>
+        <h5>
+          <%= form_with model: [:admin, @order] do |f| %>
+            <!--<%= f.hidden_field :status, :value => @order.status %>-->
+            <%= f.hidden_field :customer_id, :value => @order.customer_id %>
+            <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}, {selected: @order.status} %>
+            <%= f.submit "更新", class:"btn btn-success px-2 ml-4" %>
+          <% end %>
+        </h5>
+      </td>
+    </tr>
+  </table>
 
+  <div class="row">
+    <div class="col-9 pr-5">
+      <table class="table">
+        <thead class="thead-light">
+          <th width="15%">商品名</th>
+          <th width="15%">単価（税込）</th>
+          <th width="15%">数量</th>
+          <th width="10%">小計</th>
+          <th width="10%">製作ステータス</th>
+          <th width="3%"></th>
+        </thead>
+        <tbody>
+          
+            <% @order.order_details.each do |order_detail|%>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.price.to_s(:delimited) %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.sub_total.to_s(:delimited) %></td>
+              <td><h5>
+                <%= form_with model: order_detail, url:admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+                <%= f.hidden_field :order_id, :value => @order.id %>
+                <%= f.hidden_field :item_id, :value => order_detail.item.id %>
+                <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}, { class:"form-control"} %>
+                <td><%= f.submit "更新", class:"btn btn-success px-2" %></td>
+              </h5></td>
+                <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-3 pl-5" style="position: relative;">
+      <table class="table table-borderless absolute" style="position: absolute; bottom: 0;">
+        <tr>
+          <th scope="row" width="40%"><h5 class="font-weight-bold">商品合計<h5></th>
+          <td align="right">
+            <% @order.order_details.each do |order_detail| %>
+              <% @total_price += order_detail.sub_total %>
+            <% end %>
+            <h5><%= @total_price.to_s(:delimited) %>円<h5>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row"><h5 class="font-weight-bold">送料<h5></th>
+          <td align="right">
+            <h5><%= @shopping_cost %>円<h5>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row"><h5 class="font-weight-bold">請求額合計<h5></th>
+          <td class="font-weight-bold" align="right" width="100%">
+            <h5><%= (@total_price + @shopping_cost).to_s(:delimited) %>円<h5>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

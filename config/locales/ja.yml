@@ -13,7 +13,8 @@ ja:
         prepared: "発送済み"
         
     order_detail:
-      impossible_make: "製作不可"
-      waiting_make: "製作待ち"
-      making: "製作中" 
-      complite_make: "製作完了"
+      making_status:
+        impossible_make: "製作不可"
+        waiting_make: "製作待ち"
+        making: "製作中" 
+        complite_make: "製作完了"

@@ -22,10 +22,10 @@
             </td>
             <td><%= customer.email %></td>
             <td>
-              <% if customer.is_active? %> 
-                <p class="font-weight-bold", style="color:#32cd32">有効</p>
-              <% else %>
+              <% if customer.is_deleted? %> 
                 <p class="font-weight-bold", style="color:#d3dd3d3">退会</p>
+              <% else %>
+                <p class="font-weight-bold", style="color:#32cd32">有効</p>
               <% end %>
             </td>
           </tr>

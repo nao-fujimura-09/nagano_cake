@@ -4,8 +4,8 @@
   <table class="table table-bordered">
     <thead class="thead-light">
       <th class="font-weight-normal" width="10%">注文日</th>
-      <th class="font-weight-normal" width="50%">配送先</th>
-      <th class="font-weight-normal" width="10%">注文商品</th>
+      <th class="font-weight-normal" width="40%">配送先</th>
+      <th class="font-weight-normal" width="20%">注文商品</th>
       <th class="font-weight-normal" width="8%">支払金額</th>
       <th class="font-weight-normal" width="9%">ステータス</th>
       <th class="font-weight-normal" width="10%">注文詳細</th>
@@ -23,7 +23,7 @@
           </td>
           <td>
             <% order.order_details.each do |order_detail| %>
-              <%= order_detail.item.name %>
+              <%= order_detail.item.name %><br>
             <% end %>
           </td>
           <td>¥ <%= order.total_payment.to_s(:delimited) %></td>

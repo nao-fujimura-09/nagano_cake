@@ -6,6 +6,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_permited_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+    customers_path(current_customer)
+  end
+
+  def after_sign_out_path_for(resource)
+    new_customer_session_path
+  end
+
+
   protected
   
   def configure_permited_parameters
