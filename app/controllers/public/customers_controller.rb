@@ -10,6 +10,9 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
+      # if @customer.update(is_active: false) 
+      #   @customer.update(is_deleted: false)
+      # end
       redirect_to customers_path(current_customer)
     else
       render :edit
@@ -23,7 +26,10 @@ class Public::CustomersController < ApplicationController
   def withdrawal
     @customer = current_customer
     # @customer = Customer.find_by(email: params[:email])
-    @customer.update(is_deleted: true)
+    if @customer.update(is_deleted: true)
+      flash[:alert] = "本当に退会してもよろしいですか？"
+      # @customer.is_active = true
+    end
     reset_session
     redirect_to root_path
   end

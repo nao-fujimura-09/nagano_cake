@@ -18,12 +18,15 @@ class Admin::OrdersController < ApplicationController
     @order_details = OrderDetail.all
     @shopping_cost = 800
     @total_price = 0
-
   end
 
   def update
     @order =Order.find(params[:id])
-    @order.update(order_params)
+    @order_details = @order.order_details
+
+    if @order.update(order_params)
+      @order_details.update_all(making_status: 1) if @order.status == "confirmation_payment"
+    end
     redirect_to admin_order_path
   end
   
